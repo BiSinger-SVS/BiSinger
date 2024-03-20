@@ -1,4 +1,4 @@
 # BiSinger
 Bilingual Singing Voice Synthesis
 
-### The code will be available once the paper is accepted.
+#### We are gradually organizing and updating the open-source code, and we appreciate your understanding and attention. Rest assured, we are working diligently to complete it as soon as possible.
