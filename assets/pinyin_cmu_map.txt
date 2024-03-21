@@ -1,0 +1,57 @@
+a	AA
+ai	AY
+an	AE N
+ang	AE NG
+ao	AW
+b	B
+ch	CH
+c	T S
+d	D
+e	ER
+ei	EY
+en	AH N
+eng	AH NG
+er	AA R
+f	F
+g	G
+h	HH
+ia	IY AA
+iang	IY AE NG
+ian	IY AE N
+iao	IY AW
+ie	IY EH
+i	IY
+ing	IY NG
+in	IY N
+iong	IY UH NG
+j	J
+k	K
+l	L
+m	M
+n	N
+o	AO
+ong	UH NG
+ou	OW
+p	P
+q	Q
+r	R
+sh	SH
+s	S
+t	T
+uai	UW AY
+uang	UW AE NG
+uan	UW AE N
+ua	UW AA
+uo	UW AO
+u	UW
+ve	IY EH
+v	IY UW
+vn	UW AH N
+x	X
+zh	JH
+z	Z
+y	Y
+iou	IY UH
+uei	UW IY
+uen	UW AH N
+van	UW AE N
