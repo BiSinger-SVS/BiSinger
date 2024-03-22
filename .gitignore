@@ -1,2 +1,4 @@
 .history
 **/data/
+**/__pycache__/
+train_bisinger/inference/m4singer/zhouhl/
