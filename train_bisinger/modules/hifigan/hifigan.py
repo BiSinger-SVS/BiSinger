@@ -1,12 +1,12 @@
-import torch
-import torch.nn.functional as F
-import torch.nn as nn
-from torch.nn import Conv1d, ConvTranspose1d, AvgPool1d, Conv2d
-from torch.nn.utils import weight_norm, remove_weight_norm, spectral_norm
-
-from modules.parallel_wavegan.layers import UpsampleNetwork, ConvInUpsampleNetwork
-from modules.parallel_wavegan.models.source import SourceModuleHnNSF
 import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from modules.parallel_wavegan.layers import (ConvInUpsampleNetwork,
+                                             UpsampleNetwork)
+from modules.parallel_wavegan.models.source import SourceModuleHnNSF
+from torch.nn import AvgPool1d, Conv1d, Conv2d, ConvTranspose1d
+from torch.nn.utils import remove_weight_norm, spectral_norm, weight_norm
 
 LRELU_SLOPE = 0.1
 

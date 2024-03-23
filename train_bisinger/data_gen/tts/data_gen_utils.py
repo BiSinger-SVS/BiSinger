@@ -2,22 +2,24 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-import parselmouth
+import json
 import os
-import torch
-from skimage.transform import resize
-from utils.text_encoder import TokenTextEncoder
-from utils.pitch_utils import f0_to_coarse
+import re
 import struct
-import webrtcvad
-from scipy.ndimage.morphology import binary_dilation
+from collections import OrderedDict
+
 import librosa
 import numpy as np
-from utils import audio
+import parselmouth
 import pyloudnorm as pyln
-import re
-import json
-from collections import OrderedDict
+import torch
+import webrtcvad
+from scipy.ndimage.morphology import binary_dilation
+from skimage.transform import resize
+
+from utils import audio
+from utils.pitch_utils import f0_to_coarse
+from utils.text_encoder import TokenTextEncoder
 
 PUNCS = '!,.?;:'
 

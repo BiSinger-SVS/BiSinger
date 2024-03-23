@@ -1,18 +1,14 @@
 from modules.commons.common_layers import *
-from modules.commons.common_layers import Embedding
-from modules.fastspeech.tts_modules import (
-    FastspeechDecoder,
-    DurationPredictor,
-    LengthRegulator,
-    PitchPredictor,
-    EnergyPredictor,
-    FastspeechEncoder,
-)
+from modules.commons.common_layers import ESM, Embedding
+from modules.fastspeech.fs2 import FastSpeech2
+from modules.fastspeech.tts_modules import (DurationPredictor, EnergyPredictor,
+                                            FastspeechDecoder,
+                                            FastspeechEncoder, LengthRegulator,
+                                            PitchPredictor)
+
 from utils.cwt import cwt2f0
 from utils.hparams import hparams
-from utils.pitch_utils import f0_to_coarse, denorm_f0, norm_f0
-from modules.fastspeech.fs2 import FastSpeech2
-from modules.commons.common_layers import ESM
+from utils.pitch_utils import denorm_f0, f0_to_coarse, norm_f0
 
 
 class FastspeechMIDIEncoder(FastspeechEncoder):
@@ -93,8 +89,6 @@ class FastSpeech2MIDI(FastSpeech2):
         self.midi_dur_layer = Linear(1, self.hidden_size)
         self.is_slur_embed = Embedding(2, self.hidden_size)
         self.lang_embed = Embedding(2, self.hidden_size)
-        # self.dat = DAT(80, 256, 3) # [mel_dim, hidden_size, num_type]
-        # copied from fs2 implementation: self.spk_embed_proj = Embedding(hparams['num_spk'] + 1, self.hidden_size)
         self.style_embed = Embedding(3, self.hidden_size)
 
     def forward(
@@ -199,7 +193,5 @@ class FastSpeech2MIDI(FastSpeech2):
         ret["mel_out"] = self.run_decoder(
             decoder_inp, tgt_nonpadding, ret, infer=infer, **kwargs
         )
-        # import joblib
-        # joblib.dump(ret, '/Netdata/2022/zhouhl/ml_m4singer4.0/debug/fs2midi_ret')
 
         return ret

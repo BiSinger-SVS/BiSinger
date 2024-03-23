@@ -1,10 +1,10 @@
 # train instruction
 ## prepare training data
-After data adaptation, run `utils/merge_jsons.py` to combinate training datasets as you wanted (m4avg/m4proportional/db4cn-wdb/db4en-wdb/db4cn-shift-wdb/db4en-shift-wdb/...) to generate the training data, as a `.json` file.
+After data adaptation, run `utils/merge_jsons.py` to combine training datasets as desired (m4avg/m4proportional/db4cn-wdb/db4en-wdb/db4cn-shift-wdb/db4en-shift-wdb/...) to generate the training data, as a `.json` file.
 ## training original DiffSinger model from original [M4Singer repo](https://github.com/M4Singer/M4Singer)
-Almost follow [the instrcution from M4Singer](https://github.com/M4Singer/M4Singer/blob/master/code/README.md), with little modification to `M4Singer/code/data_gen/singing/binarize.py` to acommodate our structured data, new file are provided at `train_m4singer/binarize.py`.
+Almost follow [the instrcution from M4Singer](https://github.com/M4Singer/M4Singer/blob/master/code/README.md), with little modification to `M4Singer/code/data_gen/singing/binarize.py` to accomodate our structured data, new file is provided at `train_m4singer/binarize.py`.
 
-### specific training pipeline (we follow [the instrcution from M4Singer](https://github.com/M4Singer/M4Singer/blob/master/code/README.md))
+### specific training pipeline (we follow [the instruction from M4Singer](https://github.com/M4Singer/M4Singer/blob/master/code/README.md))
 
 - We use the pre-trained [Vocoder](https://drive.google.com/file/d/10LD3sq_zmAibl379yTW5M-LXy2l_xk6h/view?usp=share_link) and [PitchExtractor](https://drive.google.com/file/d/19QtXNeqUjY3AjvVycEt3G83lXn2HwbaJ/view?usp=share_link).
 - We train FFT-Singer from scratch to get a pre-trained FFT-Singer checkpoint (320000 steps).
@@ -16,7 +16,7 @@ Almost follow [the instrcution from M4Singer](https://github.com/M4Singer/M4Sing
 - code/usr/configs/exp_name/fs2.yaml
 - code/usr/configs/exp_name/diff.yaml
 ```
-The three `.yaml` file are based on [provided](https://github.com/M4Singer/M4Singer/tree/master/code/usr/configs/m4singer), customize change these config files:
+The three `.yaml` file are based on [provided](https://github.com/M4Singer/M4Singer/tree/master/code/usr/configs/m4singer), customize these config files as follows:
 - **IMPORTANT**: in `code/usr/configs/exp_name/base.yaml`, comment key `datasets` and add key `raw_json_fn`, the prepared structued json file, which will be read when run `train_m4singer/binarize.py` to binarize the training data.
 - and normally set experimental paths:
     - in `code/usr/configs/exp_name/base.yaml`, set `data/binary/exp_name` as value for key `binary_data_dir`.

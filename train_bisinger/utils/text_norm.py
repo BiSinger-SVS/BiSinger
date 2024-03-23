@@ -7,7 +7,12 @@
 #   - python 3.X
 # notes: python 2.X WILL fail or produce misleading results
 
-import sys, os, argparse, codecs, string, re
+import argparse
+import codecs
+import os
+import re
+import string
+import sys
 
 # ================================================================================ #
 #                                    basic constant

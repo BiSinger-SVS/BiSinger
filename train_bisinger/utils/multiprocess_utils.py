@@ -1,6 +1,6 @@
 import os
 import traceback
-from multiprocessing import Queue, Process
+from multiprocessing import Process, Queue
 
 
 def chunked_worker(worker_id, map_func, args, results_queue=None, init_ctx_func=None):

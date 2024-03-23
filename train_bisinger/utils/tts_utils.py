@@ -1,6 +1,7 @@
+from collections import defaultdict
+
 import torch
 import torch.nn.functional as F
-from collections import defaultdict
 
 
 def make_positions(tensor, padding_idx):

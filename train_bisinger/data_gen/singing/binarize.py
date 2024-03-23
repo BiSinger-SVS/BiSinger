@@ -1,28 +1,26 @@
+import glob
+import json
+import logging
 import os
 import random
-from copy import deepcopy
-import pandas as pd
-import logging
-from tqdm import tqdm
-import json
-import glob
 import re
-from resemblyzer import VoiceEncoder
 import traceback
-import numpy as np
-import pretty_midi
-import librosa
-from scipy.interpolate import interp1d
-import torch
-from textgrid import TextGrid
+from copy import deepcopy
 
-from utils.hparams import hparams
-from data_gen.tts.data_gen_utils import build_phone_encoder, get_pitch
-from utils.pitch_utils import f0_to_coarse
+import numpy as np
+import pandas as pd
 from data_gen.tts.base_binarizer import BaseBinarizer, BinarizationError
 from data_gen.tts.binarizer_zh import ZhBinarizer
+from data_gen.tts.data_gen_utils import build_phone_encoder, get_pitch
 from data_gen.tts.txt_processors.zh_g2pM import ALL_YUNMU
+from resemblyzer import VoiceEncoder
+from scipy.interpolate import interp1d
+from textgrid import TextGrid
+from tqdm import tqdm
 from vocoders.base_vocoder import VOCODERS
+
+from utils.hparams import hparams
+from utils.pitch_utils import f0_to_coarse
 
 
 class SingingBinarizer(BaseBinarizer):
@@ -122,44 +120,6 @@ class SingingBinarizer(BaseBinarizer):
             ph_set = json.load(open(ph_set_fn, "r"))
             print("| Load phone set: ", ph_set)
         return build_phone_encoder(hparams["binary_data_dir"])
-
-    # @staticmethod
-    # def get_pitch(wav_fn, spec, res):
-    #     wav_suffix = '_wf0.wav'
-    #     f0_suffix = '_f0.npy'
-    #     f0fn = wav_fn.replace(wav_suffix, f0_suffix)
-    #     pitch_info = np.load(f0fn)
-    #     f0 = [x[1] for x in pitch_info]
-    #     spec_x_coor = np.arange(0, 1, 1 / len(spec))[:len(spec)]
-    #     f0_x_coor = np.arange(0, 1, 1 / len(f0))[:len(f0)]
-    #     f0 = interp1d(f0_x_coor, f0, 'nearest', fill_value='extrapolate')(spec_x_coor)[:len(spec)]
-    #     # f0_x_coor = np.arange(0, 1, 1 / len(f0))
-    #     # f0_x_coor[-1] = 1
-    #     # f0 = interp1d(f0_x_coor, f0, 'nearest')(spec_x_coor)[:len(spec)]
-    #     if sum(f0) == 0:
-    #         raise BinarizationError("Empty f0")
-    #     assert len(f0) == len(spec), (len(f0), len(spec))
-    #     pitch_coarse = f0_to_coarse(f0)
-    #
-    #     # vis f0
-    #     # import matplotlib.pyplot as plt
-    #     # from textgrid import TextGrid
-    #     # tg_fn = wav_fn.replace(wav_suffix, '.TextGrid')
-    #     # fig = plt.figure(figsize=(12, 6))
-    #     # plt.pcolor(spec.T, vmin=-5, vmax=0)
-    #     # ax = plt.gca()
-    #     # ax2 = ax.twinx()
-    #     # ax2.plot(f0, color='red')
-    #     # ax2.set_ylim(0, 800)
-    #     # itvs = TextGrid.fromFile(tg_fn)[0]
-    #     # for itv in itvs:
-    #     #     x = itv.maxTime * hparams['audio_sample_rate'] / hparams['hop_size']
-    #     #     plt.vlines(x=x, ymin=0, ymax=80, color='black')
-    #     #     plt.text(x=x, y=20, s=itv.mark, color='black')
-    #     # plt.savefig('tmp/20211229_singing_plots_test.png')
-    #
-    #     res['f0'] = f0
-    #     res['pitch'] = pitch_coarse
 
     @classmethod
     def process_item(
@@ -381,8 +341,6 @@ class M4SingerBinarizer(MidiSingingBinarizer):
                 self.item2midi[item_name] = song_item["notes"]
                 self.item2midi_dur[item_name] = song_item["notes_dur"]
                 self.item2is_slur[item_name] = song_item["is_slur"]
-                # self.item2wdb[item_name] = [1 if (0 < i < len(song_item['phs']) - 1 and p in ALL_YUNMU + ['<SP>', '<AP>'])\
-                # or i == len(song_item['phs']) - 1 else 0 for i, p in enumerate(song_item['phs'])]
                 self.item2wdb[item_name] = song_item["word_boundary"]
                 self.item2spk[item_name] = singer
                 self.item2lang[item_name] = [song_item["lang"]] * len(song_item["phs"])
@@ -428,24 +386,6 @@ class M4SingerBinarizer(MidiSingingBinarizer):
             res["lang"].shape,
         )
         assert res["speechsing"].shape != (), f'something wrong with res["speechsing"]'
-        # gt f0.
-        # f0 = None
-        # f0_suffix = '_f0.npy'
-        # f0fn = wav_fn.replace(wav_suffix, f0_suffix).replace(wav_dir, f0_dir)
-        # pitch_info = np.load(f0fn)
-        # f0 = [x[1] for x in pitch_info]
-        # spec_x_coor = np.arange(0, 1, 1 / len(spec))[:len(spec)]
-        #
-        # f0_x_coor = np.arange(0, 1, 1 / len(f0))[:len(f0)]
-        # f0 = interp1d(f0_x_coor, f0, 'nearest', fill_value='extrapolate')(spec_x_coor)[:len(spec)]
-        # if sum(f0) == 0:
-        #     raise BinarizationError("Empty **gt** f0")
-        #
-        # pitch_coarse = f0_to_coarse(f0)
-        # res['f0'] = f0
-        # res['pitch'] = pitch_coarse
-
-        # gt f0.
         gt_f0, gt_pitch_coarse = get_pitch(wav, spec, hparams)
         if sum(gt_f0) == 0:
             raise BinarizationError("Empty **gt** f0")

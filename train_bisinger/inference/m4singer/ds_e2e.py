@@ -1,14 +1,14 @@
 import torch
-
 # from inference.tts.fs import FastSpeechInfer
 # from modules.tts.fs2_orig import FastSpeech2Orig
 from inference.m4singer.base_svs_infer import BaseSVSInfer
-from utils import load_ckpt
-from utils.hparams import hparams
+from modules.fastspeech.pe import PitchExtractor
 from usr.diff.shallow_diffusion_tts import GaussianDiffusion
 from usr.diffsinger_task import DIFF_DECODERS
-from modules.fastspeech.pe import PitchExtractor
+
 import utils
+from utils import load_ckpt
+from utils.hparams import hparams
 
 
 class DiffSingerE2EInfer(BaseSVSInfer):

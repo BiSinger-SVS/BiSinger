@@ -3,29 +3,28 @@ from torch.nn import DataParallel
 from torch.nn.parallel import DistributedDataParallel
 
 matplotlib.use('Agg')
+import copy
 import glob
 import itertools
-import subprocess
-import threading
-import traceback
-
-from pytorch_lightning.callbacks import GradientAccumulationScheduler
-from pytorch_lightning.callbacks import ModelCheckpoint
-
-from functools import wraps
-from torch.cuda._utils import _get_device_index
-import numpy as np
-import torch.optim
-import torch.utils.data
-import copy
 import logging
 import os
 import re
+import subprocess
 import sys
+import threading
+import traceback
+from functools import wraps
+
+import numpy as np
 import torch
 import torch.distributed as dist
 import torch.multiprocessing as mp
+import torch.optim
+import torch.utils.data
 import tqdm
+from pytorch_lightning.callbacks import (GradientAccumulationScheduler,
+                                         ModelCheckpoint)
+from torch.cuda._utils import _get_device_index
 from torch.optim.optimizer import Optimizer
 
 

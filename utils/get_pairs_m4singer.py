@@ -1,5 +1,6 @@
 import json
 import os
+
 from pypinyin import lazy_pinyin
 
 ALL_YUNMU = [

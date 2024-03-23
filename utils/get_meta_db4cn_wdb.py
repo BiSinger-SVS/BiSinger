@@ -1,9 +1,10 @@
-import textgrid
-import parselmouth
-import numpy as np
 import json
 import os
 from functools import reduce
+
+import numpy as np
+import parselmouth
+import textgrid
 from tqdm import tqdm
 
 dict_item2txt = {}

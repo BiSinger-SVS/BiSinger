@@ -9,10 +9,9 @@ import logging
 
 import numpy as np
 import torch
-
-from modules.parallel_wavegan.layers import CausalConv1d
-from modules.parallel_wavegan.layers import CausalConvTranspose1d
-from modules.parallel_wavegan.layers import ResidualStack
+from modules.parallel_wavegan.layers import (CausalConv1d,
+                                             CausalConvTranspose1d,
+                                             ResidualStack)
 
 
 class MelGANGenerator(torch.nn.Module):

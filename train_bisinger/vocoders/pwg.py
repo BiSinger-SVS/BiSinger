@@ -1,16 +1,18 @@
 import glob
 import re
+
 import librosa
+import numpy as np
 import torch
 import yaml
-from sklearn.preprocessing import StandardScaler
-from torch import nn
 from modules.parallel_wavegan.models import ParallelWaveGANGenerator
 from modules.parallel_wavegan.utils import read_hdf5
+from sklearn.preprocessing import StandardScaler
+from torch import nn
+from vocoders.base_vocoder import BaseVocoder, register_vocoder
+
 from utils.hparams import hparams
 from utils.pitch_utils import f0_to_coarse
-from vocoders.base_vocoder import BaseVocoder, register_vocoder
-import numpy as np
 
 
 def load_pwg_model(config_path, checkpoint_path, stats_path):

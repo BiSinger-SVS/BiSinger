@@ -2,6 +2,7 @@ import json
 import os
 import os.path as osp
 from functools import reduce
+
 from pypinyin import lazy_pinyin
 from tqdm import tqdm
 

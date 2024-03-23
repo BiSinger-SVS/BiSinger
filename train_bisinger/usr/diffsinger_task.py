@@ -1,24 +1,25 @@
+import os
+
+import numpy as np
 import torch
+import torch.nn.functional as F
+from modules.diffsinger_midi.fs2 import FastSpeech2MIDI
+from modules.fastspeech.fs2 import FastSpeech2
+from modules.fastspeech.pe import PitchExtractor
+from modules.fastspeech.tts_modules import mel2ph_to_dur
+from tasks.tts.fs2 import FastSpeech2Task
+from tasks.tts.fs2_utils import FastSpeechDataset
+from usr.diff.candidate_decoder import FFT
+from vocoders.base_vocoder import BaseVocoder, get_vocoder_cls
 
 import utils
 from utils.hparams import hparams
-from .diff.net import DiffNet
-from .diff.shallow_diffusion_tts import GaussianDiffusion, OfflineGaussianDiffusion
-from .diffspeech_task import DiffSpeechTask
-from vocoders.base_vocoder import get_vocoder_cls, BaseVocoder
-from modules.fastspeech.pe import PitchExtractor
-from modules.fastspeech.fs2 import FastSpeech2
-from modules.diffsinger_midi.fs2 import FastSpeech2MIDI
-from modules.fastspeech.tts_modules import mel2ph_to_dur
-
-from usr.diff.candidate_decoder import FFT
 from utils.pitch_utils import denorm_f0
-from tasks.tts.fs2_utils import FastSpeechDataset
-from tasks.tts.fs2 import FastSpeech2Task
 
-import numpy as np
-import os
-import torch.nn.functional as F
+from .diff.net import DiffNet
+from .diff.shallow_diffusion_tts import (GaussianDiffusion,
+                                         OfflineGaussianDiffusion)
+from .diffspeech_task import DiffSpeechTask
 
 DIFF_DECODERS = {
     "wavenet": lambda hp: DiffNet(hp["audio_num_mel_bins"]),

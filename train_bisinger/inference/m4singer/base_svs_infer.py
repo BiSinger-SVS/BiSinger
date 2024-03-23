@@ -1,18 +1,18 @@
+import glob
 import os
+import re
 
-import torch
+import librosa
 import numpy as np
-from modules.hifigan.hifigan import HifiGanGenerator
-from vocoders.hifigan import HifiGAN
+import torch
 from inference.m4singer.m4singer.map import m4singer_pinyin2ph_func
+from modules.hifigan.hifigan import HifiGanGenerator
+from pypinyin import Style, lazy_pinyin, pinyin
+from vocoders.hifigan import HifiGAN
 
 from utils import load_ckpt
-from utils.hparams import set_hparams, hparams
+from utils.hparams import hparams, set_hparams
 from utils.text_encoder import TokenTextEncoder
-from pypinyin import pinyin, lazy_pinyin, Style
-import librosa
-import glob
-import re
 
 
 class BaseSVSInfer:

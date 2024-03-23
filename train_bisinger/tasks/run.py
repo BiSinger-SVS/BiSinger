@@ -1,5 +1,6 @@
 import importlib
-from utils.hparams import set_hparams, hparams
+
+from utils.hparams import hparams, set_hparams
 
 
 def run_task():

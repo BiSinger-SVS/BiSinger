@@ -7,18 +7,20 @@ import matplotlib
 
 matplotlib.use('Agg')
 
-from utils.hparams import hparams, set_hparams
-import random
-import sys
-import numpy as np
-import torch.distributed as dist
-from pytorch_lightning.loggers import TensorBoardLogger
-from utils.pl_utils import LatestModelCheckpoint, BaseTrainer, data_loader, DDP
-from torch import nn
-import torch.utils.data
-import utils
 import logging
 import os
+import random
+import sys
+
+import numpy as np
+import torch.distributed as dist
+import torch.utils.data
+from pytorch_lightning.loggers import TensorBoardLogger
+from torch import nn
+
+import utils
+from utils.hparams import hparams, set_hparams
+from utils.pl_utils import DDP, BaseTrainer, LatestModelCheckpoint, data_loader
 
 torch.multiprocessing.set_sharing_strategy(os.getenv('TORCH_SHARE_STRATEGY', 'file_system'))
 

@@ -1,13 +1,13 @@
 import math
+from math import sqrt
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from math import sqrt
+from utils.hparams import hparams
 
 from .diffusion import Mish
-from utils.hparams import hparams
 
 Linear = nn.Linear
 ConvTranspose2d = nn.ConvTranspose2d

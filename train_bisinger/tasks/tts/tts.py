@@ -1,28 +1,27 @@
 from multiprocessing.pool import Pool
 
 import matplotlib
+from modules.fastspeech.pe import PitchExtractor
+from vocoders.base_vocoder import BaseVocoder, get_vocoder_cls
 
 from utils.pl_utils import data_loader
 from utils.training_utils import RSQRTSchedule
-from vocoders.base_vocoder import get_vocoder_cls, BaseVocoder
-from modules.fastspeech.pe import PitchExtractor
 
 matplotlib.use('Agg')
-import os
-import numpy as np
-from tqdm import tqdm
-import torch.distributed as dist
-
-from tasks.base_task import BaseTask
-from utils.hparams import hparams
-from utils.text_encoder import TokenTextEncoder
 import json
+import os
 
+import numpy as np
 import torch
+import torch.distributed as dist
 import torch.optim
 import torch.utils.data
-import utils
+from tasks.base_task import BaseTask
+from tqdm import tqdm
 
+import utils
+from utils.hparams import hparams
+from utils.text_encoder import TokenTextEncoder
 
 
 class TtsTask(BaseTask):

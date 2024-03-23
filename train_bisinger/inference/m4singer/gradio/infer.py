@@ -2,13 +2,14 @@ import importlib
 import re
 
 import gradio as gr
-import yaml
-from gradio.inputs import Textbox, Dropdown
-
-from inference.m4singer.base_svs_infer import BaseSVSInfer
-from utils.hparams import set_hparams
-from utils.hparams import hparams as hp
 import numpy as np
+import yaml
+from gradio.inputs import Dropdown, Textbox
+from inference.m4singer.base_svs_infer import BaseSVSInfer
+
+from utils.hparams import hparams as hp
+from utils.hparams import set_hparams
+
 
 class GradioInfer:
     def __init__(self, exp_name, inference_cls, title, description, article, example_inputs):
