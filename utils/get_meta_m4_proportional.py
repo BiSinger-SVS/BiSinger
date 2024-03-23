@@ -1,10 +1,11 @@
-import os
 import json
-import textgrid
+import os
 from collections import Counter
-from pypinyin import lazy_pinyin
-import numpy as np
 from functools import reduce
+
+import numpy as np
+import textgrid
+from pypinyin import lazy_pinyin
 from tqdm import tqdm
 
 

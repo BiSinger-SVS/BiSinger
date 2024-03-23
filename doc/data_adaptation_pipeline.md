@@ -6,7 +6,7 @@ In our experiment, we use three datasets: M4Singer (originally on pinyin phoneme
     - train new MFA acoustic model on this dataset with CMU prnounciation dictionary for Chinese; then proportionally distribute the original duration (pinyin based) according to the ratio obtained in the MFA alignment result.
 - for DB-4, there are CN and EN data, we also train new MFA acoustic model on each dataset, get adequately accurate MFA alignment results, which means reliable duration at phoneme level. Due to the lack of music note for this speech dataset, based on the alignment result, we get word boundaries and use [Parselmouth](https://parselmouth.readthedocs.io/en/stable/api_reference.html#parselmouth.Sound.to_pitch_cc) to detect pitch for each word, resulting in music note for SVS.
     - Further augmenting the speech data for SVS task, we adopt the pitch shifting strategy, which only changing the pitch without affecting duration.
-- for NUS-48E, ...
+- for NUS-48E, we use an open-source directory [`so-vits-svc`](https://github.com/svc-develop-team/so-vits-svc) to convert the timbre in NUS-48E to the timbre in M4Singer.
 
 ## for M4Singer
 Heavily rely on the M4Singer origin annotation `meta.json`.
@@ -33,7 +33,13 @@ Targeting CN database, run `utils/get_meta_db4cn_wdb.py` to get structured metad
 
 Run `utils/pitch_shift.py`, derive corresponding structured metadata `data/meta/db4cn-shift-wdb.json` and `data/meta/db4en-shift-wdb.json`
 
+## for NUS-48E
+### converting the timbre
+We use the open-source directory [`so-vits-svc`](https://github.com/svc-develop-team/so-vits-svc) to convert the timbre in NUS-48E to the timbre in M4Singer. You are advised to follow the procedure in the directory to get the converted timbre.
+The detailed steps are as follows:
 
+1. For each singer in M4Singer, we split them by vocal parts, and then use the `so-vits-svc` to train a singing voice conversion model for each singer by part.
+2. For each singer in NUS-48E, we use the trained model to convert the timbre of the singer to each singer in M4Singer. Note that we adopt the pitch adjustments strategy introduced in Sec. 3.5.2 to make the converted singing voice more natural.
 
 
 

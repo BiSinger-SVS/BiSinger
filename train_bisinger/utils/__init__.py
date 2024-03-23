@@ -1,16 +1,17 @@
 import glob
 import logging
-import re
-import time
-from collections import defaultdict
 import os
-import sys
+import re
 import shutil
+import sys
+import time
 import types
+from collections import defaultdict
+
 import numpy as np
 import torch
-import torch.nn.functional as F
 import torch.distributed as dist
+import torch.nn.functional as F
 from torch import nn
 
 

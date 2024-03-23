@@ -1,12 +1,12 @@
 import re
-from data_gen.tts.data_gen_utils import PUNCS
-from g2p_en import G2p
 import unicodedata
+
+from data_gen.tts.data_gen_utils import PUNCS
+from data_gen.tts.txt_processors.base_text_processor import BaseTxtProcessor
+from g2p_en import G2p
 from g2p_en.expand import normalize_numbers
 from nltk import pos_tag
 from nltk.tokenize import TweetTokenizer
-
-from data_gen.tts.txt_processors.base_text_processor import BaseTxtProcessor
 
 
 class EnG2p(G2p):

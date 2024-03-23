@@ -1,18 +1,22 @@
 import os
+
 os.environ["OMP_NUM_THREADS"] = "1"
 
-from utils.multiprocess_utils import chunked_multiprocess_run
+import json
 import random
 import traceback
-import json
+
+import numpy as np
+import pandas as pd
+from data_gen.tts.data_gen_utils import (build_phone_encoder, get_mel2ph,
+                                         get_pitch)
 from resemblyzer import VoiceEncoder
 from tqdm import tqdm
-from data_gen.tts.data_gen_utils import get_mel2ph, get_pitch, build_phone_encoder
-from utils.hparams import set_hparams, hparams
-import numpy as np
-from utils.indexed_datasets import IndexedDatasetBuilder
 from vocoders.base_vocoder import VOCODERS
-import pandas as pd
+
+from utils.hparams import hparams, set_hparams
+from utils.indexed_datasets import IndexedDatasetBuilder
+from utils.multiprocess_utils import chunked_multiprocess_run
 
 
 class BinarizationError(Exception):

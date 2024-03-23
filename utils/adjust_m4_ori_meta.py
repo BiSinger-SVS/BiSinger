@@ -1,7 +1,8 @@
-import os
 import json
-import textgrid
+import os
 from collections import Counter
+
+import textgrid
 from tqdm import tqdm
 
 

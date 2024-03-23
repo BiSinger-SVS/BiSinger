@@ -5,13 +5,13 @@ import re
 
 import librosa
 import torch
-
-import utils
 from modules.hifigan.hifigan import HifiGanGenerator
-from utils.hparams import hparams, set_hparams
 from vocoders.base_vocoder import register_vocoder
 from vocoders.pwg import PWG
 from vocoders.vocoder_utils import denoise
+
+import utils
+from utils.hparams import hparams, set_hparams
 
 
 def load_model(config_path, checkpoint_path):

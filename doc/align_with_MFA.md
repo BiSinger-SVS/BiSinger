@@ -1,6 +1,6 @@
 # overview
 
-We use Montreal Forced Aligner (MFA) to extract phoneme duration for DB-4 and M4Singer datasets. More details can refer to the [Montreal Forced Aligner tutorial by Eleanor Chodroff](https://lingmethodshub.github.io/content/tools/mfa/mfa-tutorial). Due to the provided pronounciation dictionary correspond to pretrained model for Chinese and English are based on different phoneme sets, we choose to train new acoustic models on DB-4 and M4Singer, respectively. According to [the official training tutorial](https://montreal-forced-aligner.readthedocs.io/en/latest/first_steps/index.html#first-steps-align-train-acoustic-model), there're some data needed:
+We use Montreal Forced Aligner (MFA) to extract phoneme duration for DB-4 and M4Singer datasets. More details can refer to the [Montreal Forced Aligner tutorial by Eleanor Chodroff](https://lingmethodshub.github.io/content/tools/mfa/mfa-tutorial). Since the pronunciation dictionaries provided with the pretrained models for Chinese and English are based on different phoneme sets, we have chosen to train new acoustic models for DB-4 and M4Singer, respectively. According to [the official training tutorial](https://montreal-forced-aligner.readthedocs.io/en/latest/first_steps/index.html#first-steps-align-train-acoustic-model), there're some data needed:
 - paired audio and transcript (orthographic annotations)
 - the pronounciation dictionary
 

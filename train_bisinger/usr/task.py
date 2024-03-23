@@ -1,11 +1,11 @@
 import torch
+from tasks.tts.fs2 import FastSpeech2Task
 
 import utils
-from .diff.diffusion import GaussianDiffusion
-from .diff.net import DiffNet
-from tasks.tts.fs2 import FastSpeech2Task
 from utils.hparams import hparams
 
+from .diff.diffusion import GaussianDiffusion
+from .diff.net import DiffNet
 
 DIFF_DECODERS = {
     'wavenet': lambda hp: DiffNet(hp['audio_num_mel_bins']),

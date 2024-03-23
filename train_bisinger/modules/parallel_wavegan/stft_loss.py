@@ -6,8 +6,8 @@
 """STFT-based Loss modules."""
 import librosa
 import torch
-
-from modules.parallel_wavegan.losses import LogSTFTMagnitudeLoss, SpectralConvergengeLoss, stft
+from modules.parallel_wavegan.losses import (LogSTFTMagnitudeLoss,
+                                             SpectralConvergengeLoss, stft)
 
 
 class STFTLoss(torch.nn.Module):

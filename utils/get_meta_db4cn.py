@@ -1,8 +1,9 @@
-import textgrid
-import parselmouth
-import numpy as np
 import json
 import os
+
+import numpy as np
+import parselmouth
+import textgrid
 
 dict_item2txt = {}
 with open("data/mfa_preparation/output_cn.txt", "r") as f:

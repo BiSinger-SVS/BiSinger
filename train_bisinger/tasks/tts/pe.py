@@ -1,18 +1,20 @@
 import matplotlib
+
 matplotlib.use('Agg')
 
-import torch
-import numpy as np
 import os
 
+import numpy as np
+import torch
+from modules.fastspeech.pe import PitchExtractor
 from tasks.base_task import BaseDataset
 from tasks.tts.fs2 import FastSpeech2Task
-from modules.fastspeech.pe import PitchExtractor
+
 import utils
-from utils.indexed_datasets import IndexedDataset
 from utils.hparams import hparams
+from utils.indexed_datasets import IndexedDataset
+from utils.pitch_utils import denorm_f0, norm_interp_f0
 from utils.plot import f0_to_figure
-from utils.pitch_utils import norm_interp_f0, denorm_f0
 
 
 class PeDataset(BaseDataset):
