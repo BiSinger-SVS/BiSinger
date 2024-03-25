@@ -6,8 +6,6 @@
 ### Code & Data
 Due to the restrictions of the commercial speech dataset, DB-4, we only provide the our source code acompanied with documentation conducting data adaptation.
 
-**We are gradually organizing and updating the open-source code, and we appreciate your understanding and attention. Rest assured, we are working diligently to complete it as soon as possible.**
-
 ### Citation
 If our work is useful for your research, please consider citing:
 ```
@@ -23,3 +21,4 @@ If our work is useful for your research, please consider citing:
 ### Acknowledgements
 - MoonInTheRiver's [DiffSinger](https://github.com/MoonInTheRiver/DiffSinger)
 - Official [M4Singer](https://github.com/M4Singer/M4Singer)
+- Open-source [so-vits-svc](https://github.com/svc-develop-team/so-vits-svc)
